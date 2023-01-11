@@ -8,7 +8,7 @@ export default function Card({src, date, heading}) {
         <div className={styles['heading']}>{heading}</div>
         <div className={styles['button-wrapper']}>
           <img src='/read-further.svg' />
-          <img src='/share.svg' />
+          <img src='/share.svg' onClick={() => {navigator.clipboard.writeText('Copy this text to clipboard')}} />
         </div>
     </div>
   )

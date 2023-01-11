@@ -20,3 +20,13 @@
 
     margin: 0 50px;
 }
+
+.wrapper img {
+    -webkit-transition: 0.4s ease;
+	transition: 0.4s ease;
+}
+
+.wrapper img:hover {
+    cursor: pointer;
+    scale: 1.06;
+}

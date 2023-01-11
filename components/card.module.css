@@ -32,3 +32,13 @@
 
     margin-top: 20px;
 }
+
+.button-wrapper img {
+    -webkit-transition: 0.4s ease;
+	transition: 0.4s ease;
+}
+
+.button-wrapper img:hover {
+    cursor: pointer;
+    scale: 1.06;
+}
