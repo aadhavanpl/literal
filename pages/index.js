@@ -1,5 +1,7 @@
 import Head from 'next/head'
 import Card from '../components/Card'
+import Footer from '../components/Footer'
+import Navbar from '../components/Navbar'
 
 export default function Home() {
 	return (
@@ -11,6 +13,9 @@ export default function Home() {
 			</Head>
 			{/* <Card src='/temp-img-1.png' date="12th January 2022 7:52PM" heading="Quedo mooy bueno como fond de pantalla del escritorio de..."/>
 			<Card src='/temp-img-2.png' date="12th January 2022 7:52PM" heading="Quedo mooy bueno como fond de pantalla del escritorio de..."/> */}
+
+			{/* <Navbar /> */}
+			<Footer />
 		</div>
 	)
 }
