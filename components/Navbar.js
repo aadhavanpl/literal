@@ -4,9 +4,9 @@ export default function Navbar() {
   return (
     <div className={styles['container']}>
         <div className={styles['wrapper']}>
-            <img src='/logo.png' />
+            <img src='/logo.svg' />
             A blog app created using Flask
-            <img src='/write-blog.png' />
+            <img src='/write-blog.svg' />
         </div>
     </div>
   )

@@ -7,8 +7,8 @@ export default function Card({src, date, heading}) {
         <div className={styles['date']}>{date}</div>
         <div className={styles['heading']}>{heading}</div>
         <div className={styles['button-wrapper']}>
-          <img src='/read-further.png' />
-          <img src='/share.png' />
+          <img src='/read-further.svg' />
+          <img src='/share.svg' />
         </div>
     </div>
   )
