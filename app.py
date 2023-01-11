@@ -9,9 +9,43 @@ def get_db_connection():
     conn.row_factory = sqlite3.Row
     return conn
 
+def get_post(post_id):
+    conn = get_db_connection()
+    post = conn.execute('SELECT * FROM posts WHERE id = ?',
+                        (post_id,)).fetchone()
+    conn.close()
+    if post is None:
+        return '<h1>ERROR 404</h1>'
+    return post
+
 @app.route('/navbar')
 def navbar():
     return render_template('navbar.html')
+
+@app.route('/<int:id>/edit/', methods=('GET', 'POST'))
+def edit(id):
+    post = get_post(id)
+
+    if request.method == 'POST':
+        title = request.form['title']
+        content = request.form['content']
+
+        if not title:
+            flash('Title is required!')
+
+        elif not content:
+            flash('Content is required!')
+
+        else:
+            conn = get_db_connection()
+            conn.execute('UPDATE posts SET title = ?, content = ?'
+                         ' WHERE id = ?',
+                         (title, content, id))
+            conn.commit()
+            conn.close()
+            return redirect(url_for('index'))
+
+    return render_template('edit.html', post=post)
 
 @app.route('/')
 def index():
