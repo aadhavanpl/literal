@@ -14,11 +14,16 @@
                     <a href='/blog/{{loop.index}}'>
                         <img src='/static/read-further.svg'>
                     </a>
-                    <img src='/static/share.svg'>
+                    <img src='/static/share.svg' name="{{post['id']}}" onclick="copyText(name)">
                 </div>
             </div>
         {% endfor %}
     </div>
+    <script>
+        function copyText(id) {
+            navigator.clipboard.writeText("http://127.0.0.1:5000/blog/"+id);
+        }
+    </script>
 </div>
 {% endblock %}
 
