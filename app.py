@@ -18,9 +18,9 @@ def get_post(post_id):
         abort(404)
     return post
 
-@app.route('/navbar')
-def navbar():
-    return render_template('navbar.html')
+@app.route('/blog')
+def blog():
+    return render_template('blog.html')
 
 # @app.route('/view/<int:id>', methods=('GET'))
 # def view(id):
