@@ -1,35 +1,156 @@
+<!-- Base has the main page layout with the navbar --> 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %} {% endblock %}- FlaskApp</title>
+    <title>Literal</title>
+    <meta name='Literal' content='A minimalistic blog website made using flask and sqlite' />
+	<link rel='icon' href='/main-logo.ico' />
     <style>
-        .post {
-            padding: 10px;
-            margin: 5px;
-            background-color: #f3f3f3
+        html, body {
+            padding: 0;
+            margin: 0;
+            background-color: #F5F5F5;
+            scroll-behavior: smooth;
         }
-        nav a {
-            color: #ce3757;
-            font-size: 3em;
-            margin-left: 50px;
-            text-decoration: none;
-            transition: 0.3s ease;
+
+        html::-webkit-scrollbar {
+	        display: none;
         }
-        nav a:hover {
-            color:rgb(110, 27, 170);
-            font-size: 56px;
+  
+        html {
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
         }
+
+        /*Navbar*/
+
+        .container {
+            border-bottom: 2px solid #000000;
+        }
+
+        .wrapper {
+            display: flex;
+            justify-content: space-between;
+
+            font-family: 'PT Serif';
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 24px;
+            color: #000000;
+
+            height: 100px;
+            align-items: center;
+
+            margin: 0 50px;
+        }
+
+        .wrapper img {
+            -webkit-transition: 0.4s ease;
+            transition: 0.4s ease;
+        }
+
+        .wrapper img:hover {
+            cursor: pointer;
+            scale: 1.06;
+        }
+
+        /*Index*/
+        
+        .index-container {
+            margin-top: 80px;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .heading-img-wrapper img {
+            margin-bottom: 60px;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            column-gap: 50px;
+            row-gap: 50px;
+        }
+
+        /*Card*/
+
+        .card-container {
+            width: 448px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .date {
+            font-family: 'PT Serif';
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 26px;
+            text-align: justify;
+            color: #767676;
+
+            margin-top: 15px;
+        }
+
+        .heading {
+            font-family: 'PT Serif';
+            font-weight: 700;
+            font-size: 30px;
+            line-height: 40px;
+            color: #000000;
+
+            margin-top: 10px;
+        }
+
+        .card-button-wrapper {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+
+            margin-top: 20px;
+        }
+
+        .card-button-wrapper img {
+            -webkit-transition: 0.4s ease;
+            transition: 0.4s ease;
+        }
+
+        .card-button-wrapper img:hover {
+            cursor: pointer;
+            scale: 1.06;
+        }
+
+        /*Footer*/
+
+        .footer-container {
+            border-top: 2px solid #000000;
+            bottom: 0;
+            width: 100%;
+            margin-top: 80px;
+        }
+
     </style>
 </head>
 <body>
-    <nav>
-        <a href="/">FlaskApp</a>
-        <a href="/create">Create</a>
-    </nav>
-    <hr>
+        <div class="container">
+            <div class="wrapper">
+                <img src='/static/logo.svg' />
+                A blog app created using Flask
+                <img src='/static/write-blog.svg' />
+            </div>
+        </div>
     <div class="content">
         {% block content %} {% endblock %}
+    </div>
+
+    <div class='footer-container'>
+        <div class='wrapper'>
+            <img src='/static/logo.svg' />
+            A blog app created using Flask
+        </div>
     </div>
 </body>
 </html>
