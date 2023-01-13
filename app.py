@@ -90,6 +90,7 @@ def create():
 
     return render_template('create.html')
 
+@app.route('/create/')
 def convertToBinaryData(filename):
     with open(filename, 'rb') as file:
         blobData = file.read()
