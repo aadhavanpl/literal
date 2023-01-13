@@ -18,15 +18,18 @@ def get_post(post_id):
         abort(404)
     return post
 
-@app.route('/blog')
-def blog():
-    return render_template('blog.html')
+@app.route('/blog/<int:id>')
+def blog(id):
+    conn = get_db_connection()
+    post = conn.execute('SELECT * FROM posts WHERE id=?', (id,)).fetchone()
+    conn.close()
+    return render_template('blog.html', posts=post)
 
 # @app.route('/view/<int:id>', methods=('GET'))
 # def view(id):
 #     return render_template('view.html')
 
-@app.route('/edit/<int:id>', methods=('GET', 'POST'))
+@app.route('/blog/edit/<int:id>', methods=('GET', 'POST'))
 def edit(id):
     post = get_post(id)
 
