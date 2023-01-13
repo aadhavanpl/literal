@@ -22,6 +22,10 @@ def get_post(post_id):
 def navbar():
     return render_template('navbar.html')
 
+# @app.route('/view/<int:id>', methods=('GET'))
+# def view(id):
+#     return render_template('view.html')
+
 @app.route('/edit/<int:id>', methods=('GET', 'POST'))
 def edit(id):
     post = get_post(id)
