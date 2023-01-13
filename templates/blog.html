@@ -1,6 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,7 +9,8 @@
     <style>
         /*HTML*/
 
-        html, body {
+        html,
+        body {
             padding: 0;
             margin: 0;
             background-color: #F5F5F5;
@@ -17,12 +18,14 @@
         }
 
         html::-webkit-scrollbar {
-	        display: none;
+            display: none;
         }
-  
+
         html {
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;  /* Firefox */
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
         }
 
         /*Navbar*/
@@ -30,20 +33,20 @@
         .navbar-container {
             border-bottom: 2px solid #000000;
         }
-        
+
         .navbar-wrapper {
             display: flex;
             justify-content: space-between;
-            
+
             font-family: 'PT Serif';
             font-weight: 400;
             font-size: 18px;
             line-height: 24px;
             color: #000000;
-            
+
             height: 100px;
             align-items: center;
-            
+
             margin: 0 50px;
         }
 
@@ -71,7 +74,6 @@
             flex-direction: column;
             gap: 15px;
             align-items: center;
-
             width: 855px;
         }
 
@@ -104,7 +106,7 @@
 
         .blog-img-wrapper img {
             width: 940px;
-            height: 560px;  
+            height: 560px;
         }
 
         .blog-content {
@@ -147,33 +149,36 @@
         }
     </style>
 </head>
+
 <body>
     <div class="navbar-container">
         <div class="navbar-wrapper">
-            <a href="/">
+            <a href="">
                 <img src='/static/logo.svg'>
             </a>
             A blog app created using Flask
-            <img src='/static/write-blog.svg' />
+            <a href="/create">
+                <img src='/static/write-blog.svg' />
+            </a>
         </div>
     </div>
     <div class='blog-container'>
         <div class='blog-heading-wrapper'>
-          <div class='blog-date'>{{posts['created']}}</div>
-          <div class='blog-heading'>{{posts['title']}}</div>        
+            <div class='blog-date'>{{posts['created']}}</div>
+            <div class='blog-heading'>{{posts['title']}}</div>
         </div>
-          <div class='blog-img-wrapper'>
+        <div class='blog-img-wrapper'>
             <img src="/static/temp-img-1.png" />
-          </div>
-          <div class='blog-content'>
+        </div>
+        <div class='blog-content'>
             {{posts['content']}}
-          </div>
-          <div class='blog-line'></div>
-          <a href="edit/{{posts['id']}}"> 
-            <img src='/static/edit.svg' class="edit-button"/>
+        </div>
+        <div class='blog-line'></div>
+        <a href="edit/{{posts['id']}}">
+            <img src='/static/edit.svg' class="edit-button" />
         </a>
-      </div>
-      <div class='footer-container'>
+    </div>
+    <div class='footer-container'>
         <div class='navbar-wrapper'>
             <a href="/">
                 <img src='/static/logo.svg'>
@@ -182,4 +187,5 @@
         </div>
     </div>
 </body>
+
 </html>
