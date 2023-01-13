@@ -6,7 +6,6 @@
     {% for post in posts %}
         <div class='post'>
             <style>
-
                 .post:hover {
                     background-color:#c2b7b7;
                     scale:1.005;
@@ -15,6 +14,7 @@
             <p>{{ post['created'] }}</p>
             <h2>{{ post['title'] }}</h2>
             <p>{{ post['content'] }}</p>
+            <a href="/edit/{{loop.index}} ">Edit</a>
         </div>
     {% endfor %}
 {% endblock %}
