@@ -35,19 +35,24 @@ def edit(id):
 
     if request.method == 'POST':
         title = request.form['title']
+        author = request.form['author']
         content = request.form['content']
+        imagee = request.form['imagee']
 
         if not title:
             flash('Title is required!')
+
+        elif not author:
+            flash('Author is required!')
 
         elif not content:
             flash('Content is required!')
 
         else:
             conn = get_db_connection()
-            conn.execute('UPDATE posts SET title = ?, content = ?'
+            conn.execute('UPDATE posts SET title = ?, author = ?, content = ?, imagee = ?'
                          ' WHERE id = ?',
-                         (title, content, id))
+                         (title, author, content, imagee,id))
             conn.commit()
             conn.close()
             return redirect(url_for('index'))
@@ -65,19 +70,32 @@ def index():
 def create():
     if request.method == 'POST':
         title = request.form['title']
+        author = request.form['author']
         content = request.form['content']
+        imagee = request.form['imagee']
 
         if not title:
             flash('Title is required!')
+        elif not author:
+            flash('Author is required!')
         elif not content:
             flash('Content is required!')
         else:
             conn = get_db_connection()
-            conn.execute('INSERT INTO posts (title, content) VALUES (?, ?)',
-                         (title, content))
+            conn.execute('INSERT INTO posts (title, author, content, imagee) VALUES (?, ?, ?, ?)',
+                         (title, author, content, imagee))
             conn.commit()
             conn.close()
             return redirect(url_for('index'))
 
     return render_template('create.html')
 
+def convertToBinaryData(filename):
+    with open(filename, 'rb') as file:
+        blobData = file.read()
+    return blobData
+
+def writeTofile(data, filename):
+    with open(filename, 'wb') as file:
+        file.write(data)
+    print("Stored blob data into: ", filename, "\n")
