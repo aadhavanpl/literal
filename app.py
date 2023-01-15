@@ -11,13 +11,12 @@ def get_db_connection():
 
 def get_post(post_id):
     conn = get_db_connection()
-    post = conn.execute('SELECT * FROM posts WHERE id = ?',
-                        (post_id,)).fetchone()
+    post = conn.execute('SELECT * FROM posts WHERE id = ?',(post_id,)).fetchone()
     conn.close()
     if post is None:
         abort(404)
     return post
-
+    
 @app.route('/blog/<int:id>')
 def blog(id):
     conn = get_db_connection()
@@ -32,7 +31,6 @@ def blog(id):
 @app.route('/blog/edit/<int:id>', methods=('GET', 'POST'))
 def edit(id):
     post = get_post(id)
-
     if request.method == 'POST':
         title = request.form['title']
         content = request.form['content']
@@ -45,9 +43,9 @@ def edit(id):
 
         else:
             conn = get_db_connection()
-            conn.execute('UPDATE posts SET title = ?, content = ?'
+            conn.execute('UPDATE posts SET title = ?, content = ?, imagee = ?'
                          ' WHERE id = ?',
-                         (title, content, id))
+                         (title, content, imagee, id))
             conn.commit()
             conn.close()
             return redirect(url_for('index'))
@@ -64,17 +62,22 @@ def index():
 @app.route('/create/', methods=('GET', 'POST'))
 def create():
     if request.method == 'POST':
+        
         title = request.form['title']
         content = request.form['content']
+        imagee = request.form['imagee']
+        imagee=convertToBinaryData(imagee)
 
         if not title:
             flash('Title is required!')
         elif not content:
             flash('Content is required!')
+        elif not content:
+            flash('Image is required!')
         else:
             conn = get_db_connection()
-            conn.execute('INSERT INTO posts (title, content) VALUES (?, ?)',
-                         (title, content))
+            conn.execute('INSERT INTO posts (title, content, imagee) VALUES (?, ?, ?)',
+                         (title, content, imagee))
             conn.commit()
             conn.close()
             return redirect(url_for('index'))

@@ -1,20 +1,23 @@
 import sqlite3
 
-connection = sqlite3.connect('database.db')
+connection = sqlite3.connect('database_test1.db')
 
 
 with open('table.sql') as f:
-    connection.executescript(f.read())
+    connection.executescript(f.read())  
+    #executescript allows you to exectute multiple queries at once
+    #execute allows you to only execute one query
 
-cur = connection.cursor()
+# cur = connection.cursor()
 
-cur.execute("INSERT INTO posts (title, content) VALUES (?, ?)",
-            ('First Post', 'Content for the first post')
-            )
+# cur.execute("INSERT INTO posts (title, content) VALUES (?, ?)",
+#             ('First Post', 'Content for the first post')
+#             )
 
-cur.execute("INSERT INTO posts (title, content) VALUES (?, ?)",
-            ('Second Post', 'Content for the second post')
-            )
+# cur.execute("INSERT INTO posts (title, content) VALUES (?, ?)",
+#             ('Second Post', 'Content for the second post')
+#             )
 
 connection.commit()
+#any changes made to the database will be rolled back when the connection is closed
 connection.close()
