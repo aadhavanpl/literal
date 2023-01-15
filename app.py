@@ -37,7 +37,6 @@ def edit(id):
         title = request.form['title']
         author = request.form['author']
         content = request.form['content']
-        imagee = request.form['imagee']
 
         if not title:
             flash('Title is required!')
@@ -50,9 +49,9 @@ def edit(id):
 
         else:
             conn = get_db_connection()
-            conn.execute('UPDATE posts SET title = ?, author = ?, content = ?, imagee = ?'
+            conn.execute('UPDATE posts SET title = ?, author = ?, content = ?'
                          ' WHERE id = ?',
-                         (title, author, content, imagee,id))
+                         (title, author, content, id))
             conn.commit()
             conn.close()
             return redirect(url_for('index'))
@@ -72,7 +71,6 @@ def create():
         title = request.form['title']
         author = request.form['author']
         content = request.form['content']
-        imagee = request.form['imagee']
 
         if not title:
             flash('Title is required!')
@@ -82,8 +80,8 @@ def create():
             flash('Content is required!')
         else:
             conn = get_db_connection()
-            conn.execute('INSERT INTO posts (title, author, content, imagee) VALUES (?, ?, ?, ?)',
-                         (title, author, content, imagee))
+            conn.execute('INSERT INTO posts (title, author, content) VALUES (?, ?, ?, ?)',
+                         (title, author, content))
             conn.commit()
             conn.close()
             return redirect(url_for('index'))

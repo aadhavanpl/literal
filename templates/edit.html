@@ -1,24 +1,28 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{% block title %} Edit "{{ post['title'] }}" {% endblock %}</h1>
-    <form method="post">
-        <label for="title">Title</label>
-        <br>
-        <input type="text" name="title"
-               placeholder="Post title"
-               value="{{post['title']}}"></input>
-        <br>
-
-        <label for="content">Post Content</label>
-        <br>
-        <textarea name="content"
-                  placeholder="Post content"
-                  rows="15"
-                  cols="60"
-                  >{{post['content']}}</textarea>
-                  
-        <br>
-        <button type="submit">Submit</button>
+<div class="create-container">
+    <div class='heading-img-wrapper'>
+        <img src="/static/edit-heading.svg">
+    </div>
+    <form class="form" method="post">
+        <div class="input-field">
+            <label for="title">Title</label>
+            <input type="text" name="title"
+               value="{{request.form['title']}}">
+               </input>
+        </div>
+        <div class="input-field">
+            <label for="author">Author</label>
+            <input type="text" name="author"
+               value="{{request.form['author']}}">
+               </input>
+        </div>
+        <div class="input-area">
+            <label for="content">Content</label>
+            <textarea name="content" rows="15" cols="60" value="">{{request.form['content']}}</textarea>
+        </div>
+        <button type="submit" class="btn"><img src="/static/submit-button.svg" class="submit-btn" type="submit"></button>
     </form>
-{% endblock %}
+</div>
+{% endblock %} 

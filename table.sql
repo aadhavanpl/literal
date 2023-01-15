@@ -5,6 +5,5 @@ CREATE TABLE posts (
     created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     title TEXT NOT NULL,
     author TEXT NOT NULL,
-    content TEXT NOT NULL,
-    imagee TEXT 
+    content TEXT NOT NULL
 );
