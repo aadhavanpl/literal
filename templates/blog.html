@@ -15,12 +15,9 @@
             <a href="edit/{{posts['id']}}">
                 <img src='/static/edit-button.svg' class="edit-button" />
             </a>
-            <a href="/">
-                <img src='/static/delete-button.svg' class="delete-button" />
-            </a>
+            <form action="{{ url_for('delete', id=posts['id']) }}" method="post">
+                <button type="submit" value="Delete Post" class="blog-page-btn" onclick="return confirm('Are you sure you want to delete this post?')"><img src='/static/delete-button.svg' class="delete-button" /></button>
+            </form>
         </div>
-        <form action="{{ url_for('delete', id=posts['id']) }}" method="post">
-            <input type="submit" value="Delete Post" onclick="return confirm('Are you sure you want to delete this post?')">
-        </form>
     </div>
 {% endblock %} 
