@@ -1,0 +1,287 @@
+html, body {
+    padding: 0;
+    margin: 0;
+    background-color: #F5F5F5;
+    scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar {
+    display: none;
+}
+
+html {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/*Navbar*/
+
+.navbar-container {
+    border-bottom: 2px solid #000000;
+}
+
+.navbar-wrapper {
+    display: flex;
+    justify-content: space-between;
+
+    font-family: 'PT Serif';
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: #000000;
+
+    height: 100px;
+    align-items: center;
+
+    margin: 0 50px;
+}
+
+.navbar-wrapper img {
+    -webkit-transition: 0.4s ease;
+    transition: 0.4s ease;
+}
+
+.navbar-wrapper img:hover {
+    cursor: pointer;
+    scale: 1.06;
+}
+
+/*Index*/
+
+.index-container {
+    margin-top: 80px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.heading-img-wrapper img {
+    margin-bottom: 60px;
+}
+
+.grid-layout {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 50px;
+    row-gap: 40px;
+}
+
+/*Card*/
+
+.card-container {
+    width: 448px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-container a {
+    text-decoration: none;
+}
+
+.date {
+    font-family: 'PT Serif';
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 26px;
+    text-align: justify;
+    color: #767676;
+}
+
+.heading {
+    font-family: 'PT Serif';
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 40px;
+    color: #000000;
+
+    max-height: 80px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    margin-top: 6px;
+}
+
+.card-button-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+
+    margin-top: 10px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.card-button-wrapper img {
+    -webkit-transition: 0.4s ease;
+    transition: 0.4s ease;
+}
+
+.card-button-wrapper img:hover {
+    cursor: pointer;
+    scale: 1.06;
+}
+
+/*Blog*/
+
+.blog-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 80px;
+}
+
+.blog-heading-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    width: 855px;
+}
+
+.blog-date {
+    font-family: PTSerif;
+    src: url('/static/fonts/PTSerif-Regular.woff2');
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 26px;
+    color: #767676;
+}
+
+.blog-heading {
+    font-family: 'PT Serif';
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 64px;
+    text-align: center;
+    color: #000000;
+}
+
+.blog-img-wrapper {
+    width: 960px;
+    height: 580px;
+    border: 1px solid #000000;
+    padding-top: 20px;
+    padding-left: 20px;
+    margin-top: 35px;
+}
+
+.blog-img-wrapper img {
+    width: 940px;
+    height: 560px;
+}
+
+.blog-content {
+    margin-top: 35px;
+    width: 855px;
+    text-align: justify;
+
+    font-family: 'PT Serif';
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 26px;
+    color: #000000;
+}
+
+.blog-line {
+    margin-top: 35px;
+    border-top: 2px solid #000000;
+    width: 960px;
+
+    margin-bottom: 35px;
+}
+
+.edit-button, .delete-button {
+    -webkit-transition: 0.4s ease;
+    transition: 0.4s ease;
+}
+
+.edit-button:hover, .delete-button:hover {
+    cursor: pointer;
+    scale: 1.06;
+}
+
+.blog-button-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 849px;
+
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+/*Create*/
+
+.create-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 80px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 442px;
+}
+
+.input-field, .input-area {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.input-field label, .input-area label {
+    font-family: 'PT Serif';
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    color: #000000;
+}
+
+.input-field input{
+    width: 442px;
+    height: 66px;
+    background: #F5F5F5;
+    border: 2px solid #767676;
+}
+
+input, textarea {
+    font-family: 'PT Serif';
+    padding: 0 10px 0 10px;
+    font-size: 24px;
+}
+
+textarea {
+    padding: 10px;
+}
+
+.input-area textarea {
+    width: 442px;
+    height: 442px;
+    background: #F5F5F5;
+    border: 2px solid #767676;
+}
+
+.submit-btn {
+    width: 466px;
+    margin-left: -8px;
+    margin-top: -4px;
+    /* cursor: pointer; */
+}
+
+.btn {
+    height: 49px;
+    width: 466px;
+    cursor: pointer;
+}
+
+/*Footer*/
+
+.footer-container {
+    border-top: 2px solid #000000;
+    bottom: 0;
+    width: 100%;
+    margin-top: 80px;
+}
