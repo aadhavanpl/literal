@@ -14,14 +14,16 @@
         <div class="input-field">
             <label for="author">Author</label>
             <input type="text" name="author"
-               value="{{request.form['author']}}">
-               </input>
+               value="{{request.form['author']}}" />
         </div>
         <div class="input-area">
             <label for="content">Content</label>
             <textarea name="content" rows="15" cols="60" value="">{{request.form['content']}}</textarea>
         </div>
         <button type="submit" class="btn"><img src="/static/submit-button.svg" class="submit-btn" type="submit"></button>
+    </form>
+    <form action="{{ url_for('delete', id=post['id']) }}" method="POST">
+        <input type="submit" value="Delete Post" onclick="return confirm('Are you sure you want to delete this post?')">
     </form>
 </div>
 {% endblock %} 

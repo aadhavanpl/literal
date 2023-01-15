@@ -25,10 +25,6 @@ def blog(id):
     conn.close()
     return render_template('blog.html', posts=post)
 
-# @app.route('/view/<int:id>', methods=('GET'))
-# def view(id):
-#     return render_template('view.html')
-
 @app.route('/blog/edit/<int:id>', methods=('GET', 'POST'))
 def edit(id):
     post = get_post(id)
@@ -58,6 +54,16 @@ def edit(id):
 
     return render_template('edit.html', post=post)
 
+@app.route('/blog/edit/<int:id>/delete', methods=('POST',))
+def delete(id):
+    post = get_post(id)
+    conn = get_db_connection()
+    conn.execute('DELETE FROM posts WHERE id = ?', (id,))
+    conn.commit()
+    conn.close()
+    flash('"{}" was successfully deleted!'.format(post['title']))
+    return redirect(url_for('index')) 
+
 @app.route('/')
 def index():
     conn = get_db_connection()
@@ -80,7 +86,7 @@ def create():
             flash('Content is required!')
         else:
             conn = get_db_connection()
-            conn.execute('INSERT INTO posts (title, author, content) VALUES (?, ?, ?, ?)',
+            conn.execute('INSERT INTO posts (title, author, content) VALUES (?, ?, ?)',
                          (title, author, content))
             conn.commit()
             conn.close()
@@ -88,13 +94,13 @@ def create():
 
     return render_template('create.html')
 
-@app.route('/create/')
-def convertToBinaryData(filename):
-    with open(filename, 'rb') as file:
-        blobData = file.read()
-    return blobData
+# @app.route('/create/')
+# def convertToBinaryData(filename):
+#     with open(filename, 'rb') as file:
+#         blobData = file.read()
+#     return blobData
 
-def writeTofile(data, filename):
-    with open(filename, 'wb') as file:
-        file.write(data)
-    print("Stored blob data into: ", filename, "\n")
+# def writeTofile(data, filename):
+#     with open(filename, 'wb') as file:
+#         file.write(data)
+#     print("Stored blob data into: ", filename, "\n")
