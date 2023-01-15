@@ -11,8 +11,7 @@ def get_db_connection():
 
 def get_post(post_id):
     conn = get_db_connection()
-    post = conn.execute('SELECT * FROM posts WHERE id = ?',
-                        (post_id,)).fetchone()
+    post = conn.execute('SELECT * FROM posts WHERE id = ?',(post_id,)).fetchone()
     conn.close()
     if post is None:
         abort(404)
@@ -32,27 +31,22 @@ def blog(id):
 @app.route('/blog/edit/<int:id>', methods=('GET', 'POST'))
 def edit(id):
     post = get_post(id)
-
     if request.method == 'POST':
         title = request.form['title']
         author = request.form['author']
         content = request.form['content']
-        imagee = request.form['imagee']
 
         if not title:
             flash('Title is required!')
-
-        elif not author:
-            flash('Author is required!')
 
         elif not content:
             flash('Content is required!')
 
         else:
             conn = get_db_connection()
-            conn.execute('UPDATE posts SET title = ?, author = ?, content = ?, imagee = ?'
+            conn.execute('UPDATE posts SET title = ?, author = ?, content = ?'
                          ' WHERE id = ?',
-                         (title, author, content, imagee,id))
+                         (title, author, content, id))
             conn.commit()
             conn.close()
             return redirect(url_for('index'))
@@ -68,11 +62,11 @@ def index():
 
 @app.route('/create/', methods=('GET', 'POST'))
 def create():
-    if request.method == 'POST':
+    if request.method == 'GET':
+        
         title = request.form['title']
         author = request.form['author']
         content = request.form['content']
-        imagee = request.form['imagee']
 
         if not title:
             flash('Title is required!')
@@ -82,21 +76,11 @@ def create():
             flash('Content is required!')
         else:
             conn = get_db_connection()
-            conn.execute('INSERT INTO posts (title, author, content, imagee) VALUES (?, ?, ?, ?)',
-                         (title, author, content, imagee))
+            conn.execute('INSERT INTO posts (title, author, content) VALUES (?, ?, ?)',
+                         (title, author, content ))
             conn.commit()
             conn.close()
             return redirect(url_for('index'))
 
     return render_template('create.html')
 
-@app.route('/create/')
-def convertToBinaryData(filename):
-    with open(filename, 'rb') as file:
-        blobData = file.read()
-    return blobData
-
-def writeTofile(data, filename):
-    with open(filename, 'wb') as file:
-        file.write(data)
-    print("Stored blob data into: ", filename, "\n")

@@ -4,7 +4,9 @@ connection = sqlite3.connect('database.db')
 
 
 with open('table.sql') as f:
-    connection.executescript(f.read())
+    connection.executescript(f.read())  
+    #executescript allows you to exectute multiple queries at once
+    #execute allows you to only execute one query
 
 cur = connection.cursor()
 
@@ -17,4 +19,5 @@ cur.execute("INSERT INTO posts (title, content) VALUES (?, ?)",
             )
 
 connection.commit()
+#any changes made to the database will be rolled back when the connection is closed
 connection.close()
