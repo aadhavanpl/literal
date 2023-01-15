@@ -25,6 +25,16 @@ def blog(id):
     conn.close()
     return render_template('blog.html', posts=post)
 
+@app.route('/blog/<int:id>/delete', methods=('POST',))
+def delete(id):
+    post = get_post(id)
+    conn = get_db_connection()
+    conn.execute('DELETE FROM posts WHERE id = ?', (id,))
+    conn.commit()
+    conn.close()
+    flash('"{}" was successfully deleted!'.format(post['title']))
+    return redirect(url_for('index')) 
+
 @app.route('/blog/edit/<int:id>', methods=('GET', 'POST'))
 def edit(id):
     post = get_post(id)
@@ -53,16 +63,6 @@ def edit(id):
             return redirect(url_for('index'))
 
     return render_template('edit.html', post=post)
-
-@app.route('/blog/edit/<int:id>/delete', methods=('POST',))
-def delete(id):
-    post = get_post(id)
-    conn = get_db_connection()
-    conn.execute('DELETE FROM posts WHERE id = ?', (id,))
-    conn.commit()
-    conn.close()
-    flash('"{}" was successfully deleted!'.format(post['title']))
-    return redirect(url_for('index')) 
 
 @app.route('/')
 def index():
