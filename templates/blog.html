@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class='blog-container'>
+        <div class='blog-heading-wrapper'>
+            <div class='blog-date'>{{posts['created']}}</div>
+            <div class='blog-heading'>{{posts['title']}}</div>
+            <div class='blog-date'>{{posts['author']}}</div>
+        </div>
+        <div class='blog-content'>
+            {{posts['content']}}
+        </div>
+        <div class='blog-line'></div>
+        <div class='blog-button-wrapper'>
+            <a href="edit/{{posts['id']}}">
+                <img src='/static/edit-button.svg' class="edit-button" />
+            </a>
+            <form action="{{ url_for('delete', id=posts['id']) }}" method="post">
+                <button type="submit" value="Delete Post" class="blog-page-btn" onclick="return confirm('Are you sure you want to delete this post?')"><img src='/static/delete-button.svg' class="delete-button" /></button>
+            </form>
+        </div>
+    </div>
+{% endblock %} 

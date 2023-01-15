@@ -1,0 +1,42 @@
+<!-- Base has the main page layout with the navbar --> 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Literal</title>
+    <meta name='Literal' content='A minimalistic blog website made using flask and sqlite' />
+	<link rel='icon' href='/main-logo.ico' />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&display=swap" rel="stylesheet">
+    <!-- CSS -->
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+        <div class="navbar-container">
+            <div class="navbar-wrapper">
+                <a href="/">
+                    <img src='/static/logo.svg'>
+                </a>
+                A blog app created using Flask
+                <a href="/create">
+                    <img src='/static/write-blog.svg'>
+                </a>
+            </div>
+        </div>
+    <div class="content">
+        {% block content %} {% endblock %}
+    </div>
+
+    <div class='footer-container'>
+        <div class='navbar-wrapper'>
+            <a href="/">
+                <img src='/static/logo.svg'>
+            </a>
+            A blog app created using Flask
+        </div>
+    </div>
+</body>
+</html>
