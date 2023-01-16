@@ -60,7 +60,7 @@ def edit(id):
                          (title, author, content, id))
             conn.commit()
             conn.close()
-            return redirect(url_for('index'))
+            return redirect(url_for('blog', id=post['id']))
 
     return render_template('edit.html', post=post)
 
