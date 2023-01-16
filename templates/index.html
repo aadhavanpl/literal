@@ -8,24 +8,16 @@
         {% for post in posts %}
         <div class='card-container'>
             <div class='date'>{{ post['created'] }}</div>
-            <a href='/blog/{{loop.index}}'>
+            <a href='/blog/{{post['id']}}'>
                 <div class='heading'>{{ post['title'] }}</div>
             </a>
             <div class='card-button-wrapper'>
                 <a href='/blog/{{post['id']}}'>
                     <img src='/static/read-further-btn.svg'>
                 </a>
-                <a>
-                    <img src='/static/share-btn.svg' name="{{post['id']}}" onclick="copyText(name)">
-                </a>
             </div>
         </div>
         {% endfor %}
     </div>
-    <script>
-        function copyText(id) {
-            navigator.clipboard.writeText("http://127.0.0.1:5000/blog/" + id);
-        }
-    </script>
 </div>
 {% endblock %}
