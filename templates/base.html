@@ -15,21 +15,23 @@
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-        <div class="navbar-container">
-            <div class="navbar-wrapper">
-                <a href="/">
-                    <img src='/static/logo.svg'>
-                </a>
-                A blog app created using Flask
-                <a href="/create">
-                    <img src='/static/write-blog.svg'>
-                </a>
-            </div>
+    <!--Header-->
+    <div class="navbar-container">
+        <div class="navbar-wrapper">
+            <a href="/">
+                <img src='/static/logo.svg'>
+            </a>
+            A blog app created using Flask
+            <a href="/create">
+                <img src='/static/write-blog.svg'>
+            </a>
         </div>
+    </div>
+    <!--Content between navbar and footer-->
     <div class="content">
         {% block content %} {% endblock %}
     </div>
-
+    <!--Footer-->
     <div class='footer-container'>
         <div class='navbar-wrapper'>
             <a href="/">
