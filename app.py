@@ -2,13 +2,15 @@ import sqlite3
 from flask import Flask, render_template, request, url_for, flash, redirect, abort
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'sahelriaz'
+app.config['SECRET_KEY'] = 'aadhavan'
 
+# connect with database funtion
 def get_db_connection():
     conn = sqlite3.connect('database.db')
     conn.row_factory = sqlite3.Row
     return conn
 
+# get post data from database
 def get_post(post_id):
     conn = get_db_connection()
     post = conn.execute('SELECT * FROM posts WHERE id = ?',
@@ -18,6 +20,7 @@ def get_post(post_id):
         abort(404)
     return post
 
+# blog slug page
 @app.route('/blog/<int:id>')
 def blog(id):
     conn = get_db_connection()
@@ -25,6 +28,7 @@ def blog(id):
     conn.close()
     return render_template('blog.html', posts=post)
 
+# delete function
 @app.route('/blog/<int:id>/delete', methods=('POST',))
 def delete(id):
     post = get_post(id)
@@ -32,9 +36,9 @@ def delete(id):
     conn.execute('DELETE FROM posts WHERE id = ?', (id,))
     conn.commit()
     conn.close()
-    flash('"{}" was successfully deleted!'.format(post['title']))
     return redirect(url_for('index')) 
 
+# blog edit function 
 @app.route('/blog/edit/<int:id>', methods=('GET', 'POST'))
 def edit(id):
     post = get_post(id)
@@ -64,6 +68,7 @@ def edit(id):
 
     return render_template('edit.html', post=post)
 
+# get all posts
 @app.route('/')
 def index():
     conn = get_db_connection()
@@ -71,6 +76,7 @@ def index():
     conn.close()
     return render_template('index.html', posts=posts)
 
+# create function
 @app.route('/create/', methods=('GET', 'POST'))
 def create():
     if request.method == 'POST':
@@ -80,10 +86,16 @@ def create():
 
         if not title:
             flash('Title is required!')
+            return render_template('create.html')
         elif not author:
             flash('Author is required!')
+            return render_template('create.html')
         elif not content:
             flash('Content is required!')
+            return render_template('create.html')
+        elif content.isdigit(): 
+            flash('Enter alphabets too!')
+            return render_template('create.html')
         else:
             conn = get_db_connection()
             conn.execute('INSERT INTO posts (title, author, content) VALUES (?, ?, ?)',
@@ -93,14 +105,3 @@ def create():
             return redirect(url_for('index'))
 
     return render_template('create.html')
-
-# @app.route('/create/')
-# def convertToBinaryData(filename):
-#     with open(filename, 'rb') as file:
-#         blobData = file.read()
-#     return blobData
-
-# def writeTofile(data, filename):
-#     with open(filename, 'wb') as file:
-#         file.write(data)
-#     print("Stored blob data into: ", filename, "\n")
