@@ -5,6 +5,9 @@
     <div class='heading-img-wrapper'>
         <img src="/static/create-heading.svg">
     </div>
+    {% if error %}
+        <p class=error><strong>Error:</strong> {{ error }}
+    {% endif %}
     <form class="form" method="post">
         <div class="input-field">
             <label for="title">Title</label>

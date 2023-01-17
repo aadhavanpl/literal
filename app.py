@@ -42,20 +42,20 @@ def delete(id):
 @app.route('/blog/edit/<int:id>', methods=('GET', 'POST'))
 def edit(id):
     post = get_post(id)
-
+    error = None
     if request.method == 'POST':
         title = request.form['title']
         author = request.form['author']
         content = request.form['content']
 
         if not title:
-            flash('Title is required!')
-
+            error = 'Title is required!'
         elif not author:
-            flash('Author is required!')
-
+            error = 'Author is required!'
         elif not content:
-            flash('Content is required!')
+            error = 'Content is required!'
+        elif content.isdigit(): 
+            error = 'Enter alphabets in content!'
 
         else:
             conn = get_db_connection()
@@ -66,7 +66,7 @@ def edit(id):
             conn.close()
             return redirect(url_for('blog', id=post['id']))
 
-    return render_template('edit.html', post=post)
+    return render_template('edit.html', post=post, error=error)
 
 # get all posts
 @app.route('/')
@@ -79,23 +79,20 @@ def index():
 # create function
 @app.route('/create/', methods=('GET', 'POST'))
 def create():
+    error = None
     if request.method == 'POST':
         title = request.form['title']
         author = request.form['author']
         content = request.form['content']
 
         if not title:
-            flash('Title is required!')
-            return render_template('create.html')
+            error = 'Title is required!'
         elif not author:
-            flash('Author is required!')
-            return render_template('create.html')
+            error = 'Author is required!'
         elif not content:
-            flash('Content is required!')
-            return render_template('create.html')
+            error = 'Content is required!'
         elif content.isdigit(): 
-            flash('Enter alphabets too!')
-            return render_template('create.html')
+            error = 'Enter alphabets in content!'
         else:
             conn = get_db_connection()
             conn.execute('INSERT INTO posts (title, author, content) VALUES (?, ?, ?)',
@@ -104,4 +101,4 @@ def create():
             conn.close()
             return redirect(url_for('index'))
 
-    return render_template('create.html')
+    return render_template('create.html', error=error)
