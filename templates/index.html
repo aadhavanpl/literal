@@ -7,19 +7,6 @@
     </div>
     <div  class='grid-layout'>
         {% for post in posts %} <!-- loop through the posts -->
-            {% if loop.index == posts|length %}
-                <div class='card-container' style="background-color: red;">
-                    <div class='date'>{{ post['created'] }}</div>
-                    <a href='/blog/{{post['id']}}'>
-                        <div class='heading'>{{loop.index}}. {{ post['title'] }}</div>
-                    </a>
-                    <div class='card-button-wrapper'>
-                        <a href='/blog/{{post['id']}}'>
-                            <img src='/static/read-further-btn.svg'>
-                        </a>
-                    </div>
-                </div>
-            {% else %}
                 <div class='card-container'>
                     <div class='date'>{{ post['created'] }}</div>
                     <a href='/blog/{{post['id']}}'>
@@ -31,7 +18,6 @@
                         </a>
                     </div>
                 </div>
-            {% endif %}
         {% endfor %}
     </div>
 </div>
